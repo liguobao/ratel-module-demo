@@ -1,5 +1,11 @@
 # ratel-module-template
 
+- crack-leyoujia 信任证书，方便抓包
+- crack-com-shizhuang-duapp 信任证书，显示任意类methods，手写smali文件，实现hook点
+- crack-QQ 什么都还没做
+
+
+
 ## 使用方法
 ratel项目的模版，你可以基于本项目快速构建一个适合ratel框架的插件项目。
 
