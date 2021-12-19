@@ -26,6 +26,10 @@ public class HookEntry implements IRposedHookLoadPackage {
 
     private static final String dewuQuery = "dewu-search";
 
+    private static final String showClassMethods = "show-class-methods";
+
+    private static final String searchDemo = "search-demo";
+
 
 
     @Override
@@ -37,6 +41,10 @@ public class HookEntry implements IRposedHookLoadPackage {
         SekiroClient sekiroClient =  CommonHookEntry.initSekiroClient(lpparam);
         sekiroClient.registerHandler(
                 dewuQuery, new DewuQueryHandler());
+        sekiroClient.registerHandler(
+                showClassMethods, new ShowClassMethodsHandler());
+        sekiroClient.registerHandler(
+                searchDemo, new SearchQueryHandler());
         Log.i(CommonConst.AppTag, "hook end");
     }
 

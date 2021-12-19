@@ -40,10 +40,13 @@ public class DewuQueryHandler implements ActionHandler {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         super.beforeHookedMethod(param);
+                        // thisObject 就是当前的MyDataModel实例，myACallbackResult是构造函数放进去的SekiroResponse
                         SekiroResponse networkCallback = RposedHelpers.getObjectField(
                                 param.thisObject,"myACallbackResult");
                         Log.i(CommonConst.AppTag, "com.ratel.MyDataModel onSuccess,param.args[0]:" + param.args[0].toString());
+                        // param 是onSuccess方法的参数
                         Object dataResult = param.args[0];
+                        // 这里可以随便从dataResult取出我们要的数据，这个样例是把hotWordList 返回
                         Object searchWord = RposedHelpers.callMethod(dataResult,"getSearchWord");
                         Log.i(CommonConst.AppTag,"searchWord:" + searchWord.toString());
                         Object listData = RposedHelpers.callMethod(dataResult,"getList");
@@ -64,6 +67,8 @@ public class DewuQueryHandler implements ActionHandler {
             if(myDataModel!=null) {
                 Log.i(CommonConst.AppTag, myDataModel.toString());
                 try{
+                    // 把sekiroResponse 作为参数扔到了MyDataModel构造函数里面去
+                    // 这里主要是为了在MyDataModel里面可以使用对应sekiroResponse给服务端回填数据
                     Object myDataModelProxy = RposedHelpers.newInstance(myDataModel, sekiroResponse);
                     RposedHelpers.callStaticMethod(searchJava, "l", myDataModelProxy);
                     Log.i(CommonConst.AppTag,"callStaticMethod finish");

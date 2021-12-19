@@ -1,6 +1,6 @@
 include ':demoapp',
         ':crack-com-shizhuang-duapp',
         ':crack-QQ',
-        ':crack-乐有家',
+        ':crack-leyoujia',
         ':createhelper',
         ':crack-demoapp'
